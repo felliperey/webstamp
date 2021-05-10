@@ -28,7 +28,7 @@ docker-compose up -d --build
 Once the command is finished running, you need to access the "webstamp-app" container to install composer dependencies to execute Laravel:
 
 ```
-docker exec -i -t nginx-container /bin/bash
+docker exec -i -t webstamp-app /bin/bash
 composer update
 ```
 
