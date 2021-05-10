@@ -11,15 +11,13 @@ For execution of all commands, it is necessary the use of [Composer](https://get
 Open a bash/git bash to clone the repository
 
 ```
-#!npm
-git clone https://bitbucket.org/FellipeRey/stpatool
+git clone https://github.com/felliperey/webstamp
 ```
 
 
 In stpatool folder, we need install Gulp, an automated task runner. Typing the command below, a new folder (node_modules) will be created with the content of Gulp.
 
 ```
-#!npm
 npm install -g gulp
 ```
 
@@ -27,7 +25,6 @@ npm install -g gulp
 To install the remaining dependencies, execute the command:
 
 ```
-#!npm
 npm install
 ```
 
@@ -35,7 +32,6 @@ npm install
 Some Laravel folders (like vendor) do not change, so it is not necessary to send them to the repository, it can be obtained through the command:
 
 ```
-#!composer
 composer install
 ```
 
@@ -44,7 +40,6 @@ composer install
 Gulp is the responsible to get all views, css, images and javascripts files(folder resources), compile them and send to the public folder.
 
 ```
-#!composer
 gulp
 ```
 

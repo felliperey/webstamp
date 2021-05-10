@@ -70,11 +70,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'us-cdbr-iron-east-03.cleardb.net'),
+            'host' => env('DB_HOST', 'localhost'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'heroku_695150d79387277'),
-            'username' => env('DB_USERNAME', 'b57fdbe91d0360'),
-            'password' => env('DB_PASSWORD', '695e0b82'),
+            'database' => env('DB_DATABASE', 'stpatool'),
+            'username' => env('DB_USERNAME', 'webstampEmbraer'),
+            'password' => env('DB_PASSWORD', 'W3b574mp3mbr43R'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
