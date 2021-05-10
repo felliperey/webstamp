@@ -1,21 +1,49 @@
-# **A rule-based tool for System-Theoretic Process Analysis (STPA)**
+# **WebSTAMP**
 
-TO DO
+WebSTAMP is intended to become an STAMP tool, offering support to STPA (Systems- Theoretic Process Analysis), STPA-Sec (STPA for Security) and other analysis techniques that are based on STAMP. WebSTAMP currently provides an environment to safety analysts to complete and review their STPA analysis. The tool is aimed to help beginner safety analysts to understand STPA and complete their analyis in a whole. We believe that the tool can speed up the analysis of expert analysts.
+WebSTAMP was created to provide an environment for safety analysts to perform a complete STPA analysis. The tool embraces two approaches: The first one is a rule-based approach developed by Gurgel et al. to help analysts to find unsafe control actions. The second approach provides a list of generic scenarios, associated causal factors, requirements and rationale based on the type of unsafe control action. The analyst can choose existing scenarios and create new ones. This feature enables a more systematic and comprehensive analysis.
 
 ## **Prerequisites**
 
-For execution of all commands, it is necessary the use of [Composer](https://getcomposer.org/download/) and [Node.js](https://nodejs.org/en/download/)
+There are two ways to execute WebSTAMP: (i) Using Docker or; (ii) Installing the dependencies in your machine.
 
-## **Installation**
+If you intend to install WebSTAMP using Docker, you need to install [Docker (preferably the latest version)](https://www.docker.com/products/docker-desktop) and [Git (latest version)](https://git-scm.com/downloads).
+Otherwise, you will need to install the following dependencies: [Composer (latest version)](https://getcomposer.org/download/), [Node.js (exactly version 8.11.1)](https://nodejs.org/ja/blog/release/v8.11.1/), [Git (latest version)](https://git-scm.com/downloads), and [PHP (7.4)](https://www.php.net/downloads.php).
 
-Open a bash/git bash to clone the repository
+## **Installation (using Docker)**
+Open a terminal to clone the repository
+
+```
+git clone https://github.com/felliperey/webstamp
+```
+
+In the webstamp folder, create a new .env file. You can use the content available on the file .env.example.
+
+In the terminal (make sure that you are in the webstamp folder and Docker is running), execute the following command:
+
+```
+docker-compose up -d --build
+```
+
+Once the command is finished running, you need to access the "webstamp-app" container to install composer dependencies to execute Laravel:
+
+```
+docker exec -i -t nginx-container /bin/bash
+composer update
+```
+
+After that, you will be able to access the WebSTAMP (localhost:8000)
+
+## **Installation (without Docker)**
+
+Open a terminal to clone the repository
 
 ```
 git clone https://github.com/felliperey/webstamp
 ```
 
 
-In stpatool folder, we need install Gulp, an automated task runner. Typing the command below, a new folder (node_modules) will be created with the content of Gulp.
+In webstamp folder, we need install Gulp, an automated task runner. Typing the command below, a new folder (node_modules) will be created with the content of Gulp.
 
 ```
 npm install -g gulp
@@ -29,12 +57,11 @@ npm install
 ```
 
 
-Some Laravel folders (like vendor) do not change, so it is not necessary to send them to the repository, it can be obtained through the command:
+To install the composer dependencies for Laravel, execute the command:
 
 ```
 composer install
 ```
-
 
 
 Gulp is the responsible to get all views, css, images and javascripts files(folder resources), compile them and send to the public folder.
@@ -55,69 +82,27 @@ gulp
 
 3. To create all tables automatically, just type:
 
-
-
+```
+php artisan migrate --seed
+```
 
 
 A new key must be generated for the new Laravel application. 
 
 ```
-#!composer
 php artisan key:generate
-```
-
-To create the database
-
-```
-#!mysql
-
-php artisan migrate --seed
 ```
 
 ## **Running the application**
 
-After complete the Installation, you must open two bashes and execute the commands:
+After complete the Installation, you must open two terminals and execute the commands:
 
 ```
-#!bash
-
 php artisan serve
 ```
 and
 ```
-#!bash
-
 gulp watch
 ```
 
-**Attention! ** If no change in the resources folder, it is not necessary to run the second command (gulp watch)
-
-
-## **About Laravel**
-
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
-
-
-## **Laravel Documentation**
-
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## **Laravel Contributing**
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## **Laravel Security Vulnerabilities**
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## **Laravel License**
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+**Attention! ** If you don't intend to modify the source code (mainly the resources folder), it is not necessary to run the second command (gulp watch)
